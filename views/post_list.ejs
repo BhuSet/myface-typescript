@@ -3,23 +3,22 @@
 <%- include('_header') -%>
 <body>
 <h1>Posts</h1>
-<ol>
+
     <% results.forEach(function(post) {%>
-        <li>
-            <h1>
-                <img src = "<%= post.postedBy.profileImageUrl %>" width ="30" style="border-radius: 50%;"/> <span style="font-size:40px;"><%= post.postedBy.name %></span>&nbsp
-                <span style="font-size:15px;">Posted at </span>
-                <span style ="color:blue; font-size:12px;"><%= post.createdAt %></span>    
-            </h1>
-            <h4> <%= post.message %></h4>
+        <div>
+            <h2>
+                <img src = "<%= post.postedBy.profileImageUrl %>" width ="30" style="border-radius: 50%;"/> <span style="font-size:25px;color:blue;"><%= post.postedBy.name %></span>
+                <br><span style ="color:grey; font-size:12px;">&emsp;&emsp;&emsp;Posted at <%= post.createdAt %></span></br>  
+            </h2>
+            <h3><%= post.message %></h3>
             <img src = "<%= post.imageUrl %>" width= "300" alt= "<%= post.message %>"/>
             <p>
-                <img src = "http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-up.png" width ="20"> <%= post.likedBy.length %>&nbsp&nbsp
+                <img src = "http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-up.png" width ="20"> <%= post.likedBy.length %>&nbsp;&nbsp;
                 <img src = "http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-down.png" width ="20"> <%= post.dislikedBy.length %>
-            </p> <hr/>
-        </li>
+            </p>
+        </div>
     <% }); %>
-</ol>
+
 </body>
 <%- include('_footer') -%>
 </html>
