@@ -1,8 +1,64 @@
 <html lang="en-gb">
 <%- include('_head') -%>
 <%- include('_header') -%>
+
 <body>
-<h1><%= name %></h1>
+<div class="profile-container">
+    <img src = "<%= coverImageUrl %>" height ="300" width ="100%">
+    <div class ="absolute">
+        <img src = "<%= profileImageUrl %>">
+    
+        <div class ="profile-info">
+            <div class ="profile-item"><%= name %></div>
+            <div class ="item"><%= username %></div>
+            <div class ="date"><%= email %></div>
+        </div>
+    </div>
+    
+</div>
+
+<section>
+    <p class="section-title"><%= name %>'s Posts</p>
+    <div class="container">
+        <% posts.forEach(function(post) {%>
+        <div class="post">
+            <img src = "<%= post.imageUrl %>">
+            <div class="item"><%= username %></div>
+            <div class="date"><%= post.createdAt %></div>
+            <div class="item"><%= post.message %></div>
+        </div>
+        <% }); %>
+    </div>
+</section>
+
+<section>
+    <p class="section-title">Posts <%= name %> Liked </p>
+    <div class="container">
+        <% likes.forEach(function(like) {%>
+        <div class="post">
+            <img src = "<%= like.imageUrl %>">
+            <div class="item"><%= username %></div>
+            <div class="date"><%= like.createdAt %></div>
+            <div class="item"><%= like.message %></div>
+        </div>
+        <% }); %>
+    </div>
+</section>
+
+<section>
+    <p class="section-title">Posts <%= name %> Disliked </p>
+    <div class="container">
+        <% dislikes.forEach(function(dislike) {%>
+        <div class="post">
+            <img src = "<%= dislike.imageUrl %>">
+            <div class="item"><%= username %></div>
+            <div class="date"><%= dislike.createdAt %></div>
+            <div class="item"><%= dislike.message %></div>
+        </div>
+        <% }); %>
+    </div>
+</section>
+
 </body>
 <%- include('_footer') -%>
 </html>

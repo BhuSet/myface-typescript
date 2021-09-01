@@ -1,24 +1,71 @@
 <html lang="en-gb">
 <%- include('_head') -%>
 <%- include('_header') -%>
+<style>
+    form { display: inline; }
+    h1 {text-align: center;font-size: 30px;}
+
+    body {
+        background-color: rgb(138, 138, 53);
+    }
+    @media only screen and (max-width: 375px) {
+        body {
+            background-color: lightblue;
+        }
+    }
+
+    .box {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+    .box div {
+        width: 600px;
+        height: auto;
+    }
+</style>
+
 <body>
 <h1>Posts</h1>
 
-    <% results.forEach(function(post) {%>
-        <div>
-            <h2>
-                <img src = "<%= post.postedBy.profileImageUrl %>" width ="30" style="border-radius: 50%;"/> <span style="font-size:25px;color:blue;"><%= post.postedBy.name %></span>
-                <br><span style ="color:grey; font-size:12px;">&emsp;&emsp;&emsp;Posted at <%= post.createdAt %></span></br>  
-            </h2>
+<% results.forEach(function(post) {%>
+<div class="box">
+    <div>
+        <h2>
+            <img src = "<%= post.postedBy.profileImageUrl %>" width ="30" style="border-radius: 50%; vertical-align:middle;"/> <span style="font-size:25px;color:blue;"><%= post.postedBy.name %></span>
+            <br><span style ="color:rgb(158, 18, 18); font-size:12px;">&emsp;&emsp;&emsp;Posted at <%= post.createdAt %></span></br>  
+        </h2>
+        <p>
             <h3><%= post.message %></h3>
-            <img src = "<%= post.imageUrl %>" width= "300" alt= "<%= post.message %>"/>
-            <p>
-                <img src = "http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-up.png" width ="20"> <%= post.likedBy.length %>&nbsp;&nbsp;
-                <img src = "http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-down.png" width ="20"> <%= post.dislikedBy.length %>
-            </p>
-        </div>
-    <% }); %>
-
+            <img src = "<%= post.imageUrl %>" width= "300" alt= "<%= post.message %>"/><br>
+        
+            <a title = "<% post.likedBy.forEach(function(userlike) {%> <%= userlike.name %>&#10;<% }); %>" style="font-size:25px;">
+                <img src = "http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-up.png" width ="20"> 
+            </a>
+            <%= post.likedBy.length %>&nbsp;&nbsp;
+            <a title = "<% post.dislikedBy.forEach(function(dislike) {%> <%= dislike.name %>&#10;<% }); %>" style="font-size:25px;">
+                <img src = "http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-down.png" width ="20">
+            </a>
+            <%= post.dislikedBy.length %><br/><br/>
+            
+            <form method="post" display= "inline" action= "/posts/<%= post.id %>/like">
+                <button type="submit">Like</button> 
+            </form>&nbsp;&nbsp;
+            <form method="post" display= "inline" action= "/posts/<%= post.id %>/dislike">
+                <button type="submit">DisLike</button> 
+            </form>
+        </p><hr>
+    </div>
+</div>
+<% }); %>
+<%if (previous) { %>
+    <a href="<%= previous %>">Previous</a>
+<% } %>
+<%if (next) { %>
+    <a href="<%= next %>">Next</a>
+<% } %>
 </body>
 <%- include('_footer') -%>
 </html>
