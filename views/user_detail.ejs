@@ -4,7 +4,7 @@
 
 <body>
 <div class="profile-container">
-    <img src = "<%= coverImageUrl %>" height ="300" width ="100%">
+    <img src = "<%= coverImageUrl %>" alt="<%= name %>'s cover photo" class="cover-photo">
     <div class ="absolute">
         <img src = "<%= profileImageUrl %>">
     
@@ -22,7 +22,7 @@
     <div class="container">
         <% posts.forEach(function(post) {%>
         <div class="post">
-            <img src = "<%= post.imageUrl %>">
+            <img src = "<%= post.imageUrl %>" alt="<%= post.message %>">
             <div class="item"><%= username %></div>
             <div class="date"><%= post.createdAt %></div>
             <div class="item"><%= post.message %></div>
@@ -36,7 +36,7 @@
     <div class="container">
         <% likes.forEach(function(like) {%>
         <div class="post">
-            <img src = "<%= like.imageUrl %>">
+            <img src = "<%= like.imageUrl %>" alt="<%= like.message %>">
             <div class="item"><%= username %></div>
             <div class="date"><%= like.createdAt %></div>
             <div class="item"><%= like.message %></div>
@@ -50,7 +50,7 @@
     <div class="container">
         <% dislikes.forEach(function(dislike) {%>
         <div class="post">
-            <img src = "<%= dislike.imageUrl %>">
+            <img src = "<%= dislike.imageUrl %>" alt="<%= dislike.message %>">
             <div class="item"><%= username %></div>
             <div class="date"><%= dislike.createdAt %></div>
             <div class="item"><%= dislike.message %></div>
