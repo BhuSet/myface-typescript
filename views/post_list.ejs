@@ -30,6 +30,10 @@
 <body>
 <h1>Posts</h1>
 
+<button id = "change-color-button">
+    Click me to Change Post Background
+</button>
+
 <% results.forEach(function(post) {%>
 <div class="box">
     <div>
@@ -66,6 +70,8 @@
 <%if (next) { %>
     <a href="<%= next %>">Next</a>
 <% } %>
+<br><br><br>
+
 </body>
 <%- include('_footer') -%>
 </html>
