@@ -1,13 +1,21 @@
 /* Add your styles here. */
 header{ 
-    background: #252A38;}
+    background: #252A38;
+    height:60px;
+}
+.header-content{
+    display:flex;
+    justify-content: center;
+}
 .header-style {
-    position: relative;
+    position: absolute;
     height: 60px;
     font-size: 18px;
     color:white;
     display: flex;
     align-items: center;
+    width: 1024px;
+    justify-content: center;
 }
 .header-style .selected{
     justify-content: space-evenly;
